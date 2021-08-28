@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient, private acountService: AccountService) { }
 
   ngOnInit() {
-    this.getUsers();
+    //  this.getUsers();
     this.setCurrentUser();
   }
   getUsers() {
@@ -28,7 +28,10 @@ export class AppComponent implements OnInit {
   }
   setCurrentUser() {
     const user: User = JSON.parse(localStorage.getItem('user')!);
-    this.acountService.setCurrentUser(user);
+    if (user) {
+      this.acountService.setCurrentUser(user);
+      // this.presence.createHubConnection(user);
+    }
   }
 
 }
